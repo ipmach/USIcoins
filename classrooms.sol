@@ -141,4 +141,61 @@ contract Rooms_Use{
         return count_rooms;
     }
 
+    function set_price(uint index, uint hour) internal returns(bool){
+
+        int256 valid_rooms = int256(room_list.length);
+        valid_rooms -= 1;
+        int256 cost = 0;
+        int256 avg;
+
+        room storage chosen_room = room_list[index];
+        if (is_free(index, hour)){
+
+
+
+
+            for (uint i = 0; i < room_list.length; i++){
+
+
+                if(i == index){
+
+                    continue;
+                }
+
+                if(hour < room_list[i].open_hour || hour > room_list[i].close_hour){
+
+                    valid_rooms -= 1;
+                    continue;
+                }
+
+                else{
+
+                    room storage r = room_list[i];
+                    cost += r.schedule[hour - r.open_hour];
+                }
+            }
+        }
+
+
+        else{
+
+            return false;
+        }
+
+        avg = cost/valid_rooms;
+        chosen_room.extra_price = chosen_room.schedule[hour - chosen_room.open_hour - 1] + 1 - avg;
+
+        return true;
+
+
+    }
+
+    function get_price(uint index, uint hour) public returns(int256){
+
+        set_price(index, hour);
+
+
+        return price_aver + int256(room_list[index].extra_price);
+    }
+
 }
