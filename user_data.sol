@@ -1,6 +1,6 @@
 pragma solidity ^0.4.24;
 
-contract users_balance {
+contract Users_balance {
 
     mapping(address => Person)  balances;
 

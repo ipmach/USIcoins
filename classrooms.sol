@@ -1,6 +1,6 @@
 pragma solidity ^0.4.24;
 
-contract classroom{
+contract Rooms_Use{
 
     room[] room_list;
     int256 count_rooms = 0;
@@ -13,17 +13,17 @@ contract classroom{
         uint close_hour;
         int256 number_people;
         int256 extra_price;
-        uint[] schedule;
+        int256[] schedule;
     }
 
     modifier onlyOwner() {
         // Only owner can do some operations
-        require(msg.sender == owner);
+        require(tx.origin == owner);
         _;
     }
 
     constructor() public {
-        owner = msg.sender;
+        owner = tx.origin;
     }
 
     function add_class(string _name, uint _open_hour,
@@ -34,7 +34,7 @@ contract classroom{
             return false;
         }
         uint N = _close_hour - _open_hour;
-        uint[] memory hour_list = new uint[](N);
+        int256[] memory hour_list = new int256[](N);
         for (uint i=0; i<N; i++) {
             hour_list[i] = 0;
         }
@@ -58,12 +58,13 @@ contract classroom{
         return room_list[index].open_hour;
     }
 
-    function set_openHour_room(uint index, uint _open_hour) public onlyOwner{
+    function set_openHour_room(uint index, uint _open_hour) public onlyOwner returns(bool){
         // Set open hour room
         if (room_list[index].close_hour <= _open_hour){
             return false;
         }
         room_list[index].open_hour = _open_hour;
+        return true;
     }
 
     function get_closeHour_room(uint index) public view returns(uint close_hour){
@@ -71,12 +72,13 @@ contract classroom{
         return room_list[index].close_hour;
     }
 
-    function set_closeHour_room(uint index, uint _close_hour) public onlyOwner{
+    function set_closeHour_room(uint index, uint _close_hour) public onlyOwner returns(bool){
         // Set close hour room
         if (_close_hour <= room_list[index].open_hour){
             return false;
         }
         room_list[index].close_hour = _close_hour;
+        return true;
     }
 
     function get_numberPeople_room(uint index) public view returns(int256 numberPeople){
@@ -84,10 +86,33 @@ contract classroom{
         return room_list[index].number_people;
     }
 
-    function set_numberPeople_room(uint index, int256 _numberPeople) public onlyOwner{
+    function set_numberPeople_room(uint index, int256 _numberPeople) public onlyOwner returns(bool){
         // Set number people room
         room_list[index].number_people = _numberPeople;
+        return true;
     }
 
+    function is_free(uint index, uint hour) public view returns(bool){
+        // Check if the room is free in an specific hour
+        // Check if the room open yet
+        if (room_list[index].open_hour > hour){
+            return false;
+        }
+        // Check if the room it has already close
+        if (room_list[index].close_hour < hour){
+            return false;
+        }
+        uint hour_index = hour - room_list[index].open_hour;
+        //Check if the class is full
+        if (room_list[index].schedule[hour_index] >= room_list[index].number_people){
+            return false;
+        }
+        return true;
+    }
+
+    function get_count() public view returns(int256){
+        // Number of classes
+        return count_rooms;
+    }
 
 }

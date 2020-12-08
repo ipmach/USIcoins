@@ -1,8 +1,10 @@
 pragma solidity ^0.4.24;
 
 import "./user_data.sol";
+import "./classrooms.sol";
 
-contract users_op is users_balance{
+
+contract Users_op is Users_balance, Rooms_Use{
 
     function sent_points(address _user,
                          int256 amount) public returns (bool){
@@ -17,4 +19,23 @@ contract users_op is users_balance{
         return false;
     }
 
+    function reservate_room(uint index, uint hour) public returns (bool){
+        // reservate room
+        //You must be register
+        if(balances[msg.sender].isValue){
+            // check if the room is free
+            if (is_free(index, hour)){
+                // You need to have enough money to pay
+                if (get_balance() < price_aver + room_list[index].extra_price){
+                    return false;
+                }
+                // Making payment and reservation
+                balances[msg.sender].balance -= price_aver + room_list[index].extra_price;
+                uint hour_index = hour - room_list[index].open_hour;
+                room_list[index].schedule[hour_index] ++;
+                return true;
+            }
+        }
+       return false;
+    }
 }
