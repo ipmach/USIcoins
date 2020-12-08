@@ -6,6 +6,7 @@ contract Users_balance {
 
     int256  peopleCount = 0;
     int256 reset_points = 100;
+    uint256 reset_period = 7*24*60*60;
 
     // Add time reset in the future
     struct Person {
@@ -14,6 +15,15 @@ contract Users_balance {
         int256 balance;
         string study;
         bool isValue;
+        uint256 time_reset;
+    }
+
+    function reset_user() internal{
+        // Reset the user data if a periof of time pass
+        if (balances[tx.origin].time_reset <= now){
+            balances[tx.origin].balance = reset_points;
+            balances[tx.origin].time_reset += reset_period;
+        }
     }
 
     function addPerson(string memory _firstName, string memory _lastName,
@@ -23,12 +33,13 @@ contract Users_balance {
             return false;
         }
         balances[tx.origin] = Person(_firstName, _lastName,
-                                      reset_points, _study, true);
+                                      reset_points, _study, true, now + reset_period);
         peopleCount ++;
         return true;
     }
 
-    function get_name() public view returns (string memory){
+    function get_name() public returns (string memory){
+        reset_user(); //Check if we have to reset user
         // Get variable name
         if(balances[tx.origin].isValue){
             return balances[tx.origin].firstName;
@@ -37,6 +48,7 @@ contract Users_balance {
     }
 
     function set_name(string memory _firstName) public returns (bool){
+         reset_user(); //Check if we have to reset user
         // Set variable name
         if(balances[tx.origin].isValue){
             balances[tx.origin].firstName = _firstName;
@@ -45,7 +57,8 @@ contract Users_balance {
         return false;
     }
 
-    function get_lastName() public view returns (string memory){
+    function get_lastName() public returns (string memory){
+        reset_user(); //Check if we have to reset user
         // Get variable last name
         if(balances[tx.origin].isValue){
             return balances[tx.origin].lastName;
@@ -54,6 +67,7 @@ contract Users_balance {
     }
 
     function set_lastName(string memory _lastName) public returns (bool){
+        reset_user(); //Check if we have to reset user
         // Set variable last name
         if(balances[tx.origin].isValue){
             balances[tx.origin].lastName = _lastName;
@@ -62,7 +76,8 @@ contract Users_balance {
         return false;
     }
 
-    function get_study() public view returns (string memory){
+    function get_study() public returns (string memory){
+        reset_user(); //Check if we have to reset user
         // Get variable study
         if(balances[tx.origin].isValue){
             return balances[tx.origin].study;
@@ -71,6 +86,7 @@ contract Users_balance {
     }
 
     function set_study(string memory _study) public returns (bool){
+        reset_user(); //Check if we have to reset user
         // Set variable study
         if(balances[tx.origin].isValue){
             balances[tx.origin].study = _study;
@@ -79,7 +95,8 @@ contract Users_balance {
         return false;
     }
 
-    function get_balance() public view returns (int256){
+    function get_balance() public returns (int256){
+        reset_user(); //Check if we have to reset user
         // Get variable balance
         if(balances[tx.origin].isValue){
             return balances[tx.origin].balance;
@@ -87,12 +104,14 @@ contract Users_balance {
         return 0;
     }
 
-    function get_count() public view returns (int256){
+    function get_count() public returns (int256){
+        reset_user(); //Check if we have to reset user
         // Get number of people in the system
         return peopleCount;
     }
 
-    function get_reset_points() public view returns (int256){
+    function get_reset_points() public returns (int256){
+        reset_user(); //Check if we have to reset user
         //Get number of points reset every week
         return reset_points;
     }

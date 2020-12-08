@@ -8,6 +8,7 @@ contract Users_op is Users_balance, Rooms_Use{
 
     function sent_points(address _user,
                          int256 amount) public returns (bool){
+        reset_user(); //Check if we have to reset user
         // Sent points to another user
         if (balances[msg.sender].balance >= amount){
             if (balances[_user].isValue) {
@@ -21,6 +22,8 @@ contract Users_op is Users_balance, Rooms_Use{
 
     function reservate_room(uint index, uint hour) public returns (bool){
         // reservate room
+        reset_user(); //Check if we have to reset use
+        reset_rooms(); //Resert rooms schedules
         //You must be register
         if(balances[msg.sender].isValue){
             // check if the room is free
