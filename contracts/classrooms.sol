@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.16;
 
 contract Rooms_Use{
 
@@ -41,7 +41,7 @@ contract Rooms_Use{
         }
     }
 
-    function add_class(string _name, uint _open_hour,
+    function add_class(string memory _name, uint _open_hour,
                        uint _close_hour,
                        int256 _number_people) public onlyOwner returns(bool){
         reset_rooms(); //Resert rooms schedules
@@ -59,13 +59,13 @@ contract Rooms_Use{
                             _number_people, 0, hour_list));
     }
 
-    function get_name_room(uint index) public returns(string name){
+    function get_name_room(uint index) public returns(string memory name){
         // Get name of a room
         reset_rooms(); //Resert rooms schedules
         return room_list[index].name;
     }
 
-    function set_name_room(uint index, string _name) public onlyOwner{
+    function set_name_room(uint index, string memory _name) public onlyOwner{
         // Set name of a room
         reset_rooms(); //Resert rooms schedules
         room_list[index].name = _name;
