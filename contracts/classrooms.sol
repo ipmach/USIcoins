@@ -150,33 +150,21 @@ contract Rooms_Use{
 
         room storage chosen_room = room_list[index];
         if (is_free(index, hour)){
-
-
-
-
             for (uint i = 0; i < room_list.length; i++){
-
-
                 if(i == index){
-
                     continue;
                 }
-
                 if(hour < room_list[i].open_hour || hour > room_list[i].close_hour){
 
                     valid_rooms -= 1;
                     continue;
                 }
-
                 else{
-
                     room storage r = room_list[i];
                     cost += r.schedule[hour - r.open_hour];
                 }
             }
         }
-
-
         else{
 
             return false;
@@ -191,10 +179,7 @@ contract Rooms_Use{
     }
 
     function get_price(uint index, uint hour) public returns(int256){
-
         set_price(index, hour);
-
-
         return price_aver + int256(room_list[index].extra_price);
     }
 

@@ -4,7 +4,7 @@ contract Users_balance {
 
     mapping(address => Person)  balances;
 
-    int256  peopleCount = 0;
+    int256 peopleCount = 0;
     int256 reset_points = 100;
     uint256 reset_period = 7*24*60*60;
 
@@ -105,7 +105,7 @@ contract Users_balance {
     }
 
     function get_count() public returns (int256){
-        reset_user(); //Check if we have to reset user
+        //reset_user(); //Check if we have to reset user
         // Get number of people in the system
         return peopleCount;
     }

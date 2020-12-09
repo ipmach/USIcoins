@@ -24,6 +24,7 @@ contract Users_op is Users_balance, Rooms_Use{
         // reservate room
         reset_user(); //Check if we have to reset use
         reset_rooms(); //Resert rooms schedules
+        set_price(index, hour);
         //You must be register
         if(balances[msg.sender].isValue){
             // check if the room is free
