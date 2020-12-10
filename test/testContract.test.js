@@ -36,5 +36,3 @@ contract("Users_op", (accounts) => {
 
      });
 });
-
-
