@@ -642,21 +642,59 @@
               "type": "function"
             }
           ]
-        // Loading instance
-        const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
-        web3.eth.defaultAccount = web3.eth.accounts[0];
-        var CoursetroContract = web3.eth.contract(abi);
-        var Coursetro = CoursetroContract.at("0xcA722460B6d5912c312eC93C023ddDa5F06e69f0");
 
-        // Updating profile
-        var x = document.getElementById("table_profile").rows[1].cells;
-        x[1].innerHTML = Coursetro.get_name.call({from: web3.eth.accounts[0], gas:3000000});
-        var x = document.getElementById("table_profile").rows[2].cells;
-        x[1].innerHTML = Coursetro.get_lastName.call({from: web3.eth.accounts[0], gas:3000000});
-        var x = document.getElementById("table_profile").rows[3].cells;
-        x[1].innerHTML = Coursetro.get_study.call({from: web3.eth.accounts[0], gas:3000000});
-        var x = document.getElementById("table_profile").rows[4].cells;
-        x[1].innerHTML = Coursetro.get_balance.call({from: web3.eth.accounts[0], gas:3000000});
+        function update_user(web3, address) {
+            Coursetro.get_name.call({from: address, gass: 30000},
+                function (error, result) {
+                    if (!error) {
+                        var x = document.getElementById("table_profile").rows[1].cells;
+                        x[1].innerHTML = result;
+                    } else
+                        console.log(error.code)
+                });
+            Coursetro.get_lastName.call({from: address, gass: 30000},
+                function (error, result) {
+                    if (!error) {
+                        var x = document.getElementById("table_profile").rows[2].cells;
+                        x[1].innerHTML = result;
+                    } else
+                        console.log(error.code)
+                });
+            Coursetro.get_study.call({from: address, gass: 30000},
+                function (error, result) {
+                    if (!error) {
+                        var x = document.getElementById("table_profile").rows[3].cells;
+                        x[1].innerHTML = result;
+                    } else
+                        console.log(error.code)
+                });
+            Coursetro.get_balance.call({from: address, gass: 30000},
+                function (error, result) {
+                    if (!error) {
+                        var x = document.getElementById("table_profile").rows[4].cells;
+                        x[1].innerHTML = result;
+                    } else
+                        console.log(error.code)
+                });
+        }
+        // Loading instance
+
+        let web3 = new Web3(window.ethereum);
+        if (typeof web3 !== 'undefined') {
+             web3 = new Web3(web3.currentProvider);
+        } else {
+            console.log('No web3? You should consider trying MetaMask!');
+             web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+        }
+
+
+        var CoursetroContract = web3.eth.contract(abi);
+        var Coursetro = CoursetroContract.at("0xD5537b0acaDe1912888eb7Fb1028555C4d2d7024");
+        const address = web3.eth.accounts[0];
+
+        console.log(address);
+
+        setTimeout(function(){ update_user(web3, address);}, 1000);
     </script>
 
 <div class="jumbotron text-center" style="margin-bottom:0">
