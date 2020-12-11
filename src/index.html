@@ -1,13 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>USI COIN</title>
+      <title>USI COIN</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="index.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+  .fakeimg {
+    height: 200px;
+    background: #aaa;
+  }
+  </style>
+</head>
+
+<div id="ini" class="jumbotron text-center" style="margin-bottom:0">
+    <img id="logo" src="img.png" alt="Italian Trulli">
 
     <h1>Welcome to the official app of USICOIN</h1>
-    <p>USI is an app run in the etherum network to help
+    <p>USICOIN is an app run in the etherum network to help
         the students in this time of need.</p>
-    <p id="demo"></p>
+</div>
+
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <a class="navbar-brand" href="#">Options</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+        <a class="nav-link" href="#Profile">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#ReserveRoom">Reserve room</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#USIpoints">Give usi points</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="#About">About</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="#QA">Q&A</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div id="Profile" class="container-fluid">
+<h2 class ="sh2">Profile</h2>
+    <p>Here you can see your use data: </p>
+      <table id="table_profile" class="table">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Info</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Name</b></td>
+        <td>Name_user</td>
+      </tr>
+      <tr>
+        <td><b>Last name</b></td>
+        <td>last_name</td>
+      </tr>
+      <tr>
+        <td><b>Study</b></td>
+        <td>study</td>
+      </tr>
+      <tr>
+        <td><b>Balance</b></td>
+        <td>0</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div id="ReserveRoom" class="container-fluid">
+<h2 class ="sh2">Reserve Room</h2>
+</div>
+<div id="USIpoints" class="container-fluid">
+<h2 class ="sh2">USI points</h2>
+</div>
+<div id="About" class="container-fluid">
+    <h2 class ="sh2">ABOUT</h2>
+    <p> Because of corona students have limited places to study, so our team decide to try
+    to solve this problem with a descentralize app power by ethererum. The idea is to ensure
+        that every student at least can use the university space for a few hours per week. </p>
+    <p>To be able to acomplish this we create a market with USICOINS, a selfregularize market,
+    where every students get new points each week that can be use to reserve study areas in the university.</p>
+     <img id="logo2" src="img2.png" alt="Italian Trulli">
+</div>
+    <div id="QA" class="container-fluid">
+    <h2 class ="sh2">Q&A</h2>
+    <p> <b>Is save to use this coins? </b> </p>
+    Yes, all the operations are done in one of the bigger blockchain in the planet, secure and anonymous.
+    <p> </p>
+    <p> <b>What do I need to use it? </b> </p>
+    Well, an ethereum account, we recommend use Metamask for that. After that you need to put some data in the app,
+    but nothing special.
+    <p> </p>
+    <p> <b>Is this free? </b> </p>
+    USICOINS are a non profit exchange coin. We understand that students are having a difficult time this days so you
+    don't have to use real money. But if you want, you can buy eth and use it in other apps in the ethereum network.
+    <p> </p>
+    <p> <b>Is this app already finish? </b> </p>
+    Well, we are in demo right now. First we want to obtain peoples feedback.
+    <p> </p>
+    <p> <b>Who made this app? </b> </p>
+    Is done by students, to students, for students.
+</div>
+
 
     <script>
         abi = [
@@ -533,17 +642,26 @@
               "type": "function"
             }
           ]
-
+        // Loading instance
         const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
         web3.eth.defaultAccount = web3.eth.accounts[0];
         var CoursetroContract = web3.eth.contract(abi);
         var Coursetro = CoursetroContract.at("0xcA722460B6d5912c312eC93C023ddDa5F06e69f0");
-        console.log(Coursetro)
 
-
+        // Updating profile
+        var x = document.getElementById("table_profile").rows[1].cells;
+        x[1].innerHTML = Coursetro.get_name.call({from: web3.eth.accounts[0], gas:3000000});
+        var x = document.getElementById("table_profile").rows[2].cells;
+        x[1].innerHTML = Coursetro.get_lastName.call({from: web3.eth.accounts[0], gas:3000000});
+        var x = document.getElementById("table_profile").rows[3].cells;
+        x[1].innerHTML = Coursetro.get_study.call({from: web3.eth.accounts[0], gas:3000000});
+        var x = document.getElementById("table_profile").rows[4].cells;
+        x[1].innerHTML = Coursetro.get_balance.call({from: web3.eth.accounts[0], gas:3000000});
     </script>
-</head>
-<body>
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <p>Footer</p>
+</div>
 
 </body>
 </html>
