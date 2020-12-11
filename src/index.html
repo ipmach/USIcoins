@@ -81,6 +81,17 @@
       </tr>
     </tbody>
   </table>
+    <div class="FormClass" id="Form">
+        <p> <b> Create you user:</b> </p>
+        <label for="fname">Name:     </label>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="fname2">Last name:</label>
+        <input type="text" id="fname2" name="fname2"><br>
+        <label for="fname3">Studies:  </label>
+        <input type="text" id="fname3" name="fname3"><br>
+        <button type="button" class="btn btn-secondary" onclick=button_register()>Register</button>
+    </div>
+    <p> </p>
 </div>
 <div id="ReserveRoom" class="container-fluid">
 <h2 class ="sh2">Reserve Room</h2>
@@ -648,6 +659,11 @@
                 function (error, result) {
                     if (!error) {
                         var x = document.getElementById("table_profile").rows[1].cells;
+                        if (result == 'Not found'){
+                            document.getElementById("table_profile").style.display="none";
+                        } else{
+                            document.getElementById("Form").style.display="none";
+                        }
                         x[1].innerHTML = result;
                     } else
                         console.log(error.code)
@@ -677,6 +693,21 @@
                         console.log(error.code)
                 });
         }
+
+        function button_register() {
+          var name = document.getElementById("fname").value;
+          var lastName = document.getElementById("fname2").value;
+          var study = document.getElementById("fname3").value;
+          Coursetro.addPerson(name, lastName, study, {from: address, gass: 30000},
+                function (error, result) {
+                    if (!error) {
+                       console.log(result)
+                    } else
+                        console.log(error.code)
+                });
+          //location.reload();
+        }
+
         // Loading instance
 
         let web3 = new Web3(window.ethereum);
@@ -695,6 +726,10 @@
         console.log(address);
 
         setTimeout(function(){ update_user(web3, address);}, 1000);
+
+
+
+
     </script>
 
 <div class="jumbotron text-center" style="margin-bottom:0">

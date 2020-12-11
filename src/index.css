@@ -16,6 +16,16 @@
     margin-right: auto;
 }
 
+
+#Form{
+  margin: auto;
+  width: 60%;
+  border: 3px solid #888f91;
+  padding: 10px;
+}
+
+
+
 #ini {
   background-color: #eeeeeeff;
 }
