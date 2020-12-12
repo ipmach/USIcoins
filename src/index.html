@@ -181,8 +181,10 @@
 <div id="USIpoints" class="container-fluid">
 <h2 class ="sh2">USI points</h2>
     <label for="fname">Payee Address:</label>
-    <input type="text" id="address" name="fname">
-    <input type="submit" value="Send">
+    <input type="text" id="address_payee" name="fname">
+    <label for="fname">Amount:</label>
+    <input type="text" id="amount" name="fname">
+    <button id="send_points" type="button" onclick="send_points_user()">Send</button>
 </div>
 <div id="About" class="container-fluid">
     <h2 class ="sh2">ABOUT</h2>
@@ -212,17 +214,6 @@
     <p> <b>Who made this app? </b> </p>
     Is done by students, to students, for students.
 </div>
-
-    <script>
-        document.getElementById("dropdownMenuButton").onclick = function() {myFunction()};
-
-        function myFunction() {
-        var e = document.getElementById("dropdownMenuButton").value;
-        console.log(e);
-        //var strUser =e.options[e.target.selectedIndex].text;
-        //e.innerHTML = strUser;
-    }
-    </script>
 
     <script>
         abi = [
@@ -804,7 +795,26 @@
                     } else
                         console.log(error.code)
                 });
-          //location.reload();
+          location.reload();
+        }
+
+        function send_points_user(){
+
+           var amt = parseInt(document.getElementById('amount').value);
+           var addr = document.getElementById('address_payee').value;
+
+           console.log(amt);
+           console.log(addr);
+
+           Coursetro.sent_points(addr,amt, {from: address, gasLimit: 6721975},
+                function (error, result) {
+                    if (!error) {
+                       console.log(result)
+                    } else
+                        console.log(error.code)
+                });
+           location.reload();
+
         }
 
         // Loading instance
@@ -821,7 +831,7 @@
 
 
         var CoursetroContract = web3.eth.contract(abi);
-        var Coursetro = CoursetroContract.at("0x39bfF4Fd5F2d52095888642cba60aB179d86cc2b");
+        var Coursetro = CoursetroContract.at("0xD67DEE1eeD17C2bAeaF455B6D1B8E1Cc8A2dc253");
         const address = web3.eth.accounts[0];
 
 
