@@ -99,125 +99,70 @@
         <thead>
             <tr>
                 <th>Room</th>
-                <th>Times</th>
-                <th>Availability & Price</th>
+                <th>Open hour</th>
+                <th>Close Hour</th>
+                <th>Index</th>
             </tr>
 
         </thead>
-        <tbody>
-        <tr>
-            <td>Library</td>
-            <td><div class="library-dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Pick Time
-                    </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item">09:00</a>
-                    <a class="dropdown-item">10:00</a>
-                    <a class="dropdown-item">11:00</a>
-                    <a class="dropdown-item">12:00</a>
-                    <a class="dropdown-item">13:00</a>
-                    <a class="dropdown-item">14:00</a>
-                    <a class="dropdown-item">15:00</a>
-                    <a class="dropdown-item">16:00</a>
-                    <a class="dropdown-item">17:00</a>
-                    <a class="dropdown-item">18:00</a>
-                    <a class="dropdown-item">19:00</a>
-                    <a class="dropdown-item">20:00</a>
+        <tbody id = "ReserveB">
 
-                </div>
-            </div></td>
-            <td><button class="check_library" type="button" style="height:30px;width:110px">Check
-                <span class="caret"></span></button></td>
-        </tr>
-        <tr>
-            <td>Main Building (Room 154)</td>
-            <td><div class="main-dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="main_building_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Pick Time
-                    </button>
-                <div class="dropdown-menu" aria-labelledby="main_building_button">
-                    <a class="dropdown-item">09:00</a>
-                    <a class="dropdown-item">10:00</a>
-                    <a class="dropdown-item">11:00</a>
-                    <a class="dropdown-item">12:00</a>
-                    <a class="dropdown-item">13:00</a>
-                    <a class="dropdown-item">14:00</a>
-                    <a class="dropdown-item">15:00</a>
-                    <a class="dropdown-item">16:00</a>
-                    <a class="dropdown-item">17:00</a>
-                    <a class="dropdown-item">18:00</a>
-                </div>
-            </div></td>
-            <td><button class="check_main" type="button" style="height:30px;width:110px">Check
-                <span class="caret"></span></button></td>
-        </tr>
-        <tr>
-            <td>Open Area</td>
-            <td><div class="open-dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="open_area_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Pick Time
-                    </button>
-                <div class="dropdown-menu" aria-labelledby="open_area_button">
-                    <a class="dropdown-item">09:00</a>
-                    <a class="dropdown-item">10:00</a>
-                    <a class="dropdown-item">11:00</a>
-                    <a class="dropdown-item">12:00</a>
-                    <a class="dropdown-item">13:00</a>
-                    <a class="dropdown-item">14:00</a>
-                    <a class="dropdown-item">15:00</a>
-                    <a class="dropdown-item">16:00</a>
-                    <a class="dropdown-item">17:00</a>
-                    <a class="dropdown-item">18:00</a>
-                </div>
-            </div></td>
-            <td><button class="check_library" type="button" style="height:30px;width:110px">Check
-                <span class="caret"></span></button></td>
-        </tr>
         </tbody>
 
     </table>
+    <div class="FormClass" id="Form_reserve">
+        <label for="rname1">Index room:  </label>
+        <input type="text" id="rname1" name="fname2"><br>
+        <label for="rname2">Hour:  </label>
+        <input type="text" id="rname2" name="fname3"><br>
+        <button type="button" class="btn btn-secondary" onclick=button_reserve()>Reserve</button>
+    </div>
 </div>
 <div id="USIpoints" class="container-fluid">
 <h2 class ="sh2">USI points</h2>
     <label for="fname">Payee Address:</label>
-    <input type="text" id="address_payee" name="fname">
-    <label for="fname">Amount:</label>
-    <input type="text" id="amount" name="fname">
-    <button id="send_points" type="button" onclick="send_points_user()">Send</button>
+    <input type="text" id="address" name="fname">
+    <input type="submit" value="Send">
 </div>
 <div id="About" class="container-fluid">
     <h2 class ="sh2">ABOUT</h2>
-    <p> Due to COVID-19, students have limited places to study, so our team decided to try
-    to solve this problem with a decentralized app powered by ethererum. The idea is to ensure
-        that every student can use the university space for a few hours per week. </p>
-    <p>To be able to acomplish this, we create a market with USICOINS, a self-regularized market,
-    where every student gets new points each week that can be used to reserve study areas in the university.</p>
+    <p> Because of corona students have limited places to study, so our team decide to try
+    to solve this problem with a descentralize app power by ethererum. The idea is to ensure
+        that every student at least can use the university space for a few hours per week. </p>
+    <p>To be able to acomplish this we create a market with USICOINS, a selfregularize market,
+    where every students get new points each week that can be use to reserve study areas in the university.</p>
      <img id="logo2" src="img2.png" alt="Italian Trulli">
 </div>
     <div id="QA" class="container-fluid">
     <h2 class ="sh2">Q&A</h2>
-        <p><b>What can I do with USICOIN?</b></p>
-        Reserve rooms on your chosen time and send others precious coins if they need it and you don't. Don't worry, every
-        week you have 100 fresh new coins to work with. No one will run out. Each reservation is for 1 hour.
-        <p></p>
-    <p> <b>Is it safe to use these coins? </b> </p>
-    Yes, all the operations are done in one of the biggest blockchains in the planet, secure and anonymous.
+    <p> <b>Is save to use this coins? </b> </p>
+    Yes, all the operations are done in one of the bigger blockchain in the planet, secure and anonymous.
     <p> </p>
     <p> <b>What do I need to use it? </b> </p>
-    Well, an ethereum account, we recommend to use Metamask for that. After that you need to put some data in the app,
+    Well, an ethereum account, we recommend use Metamask for that. After that you need to put some data in the app,
     but nothing special.
     <p> </p>
     <p> <b>Is this free? </b> </p>
-    USICOINS are a non profit exchange coin. We understand that students are having a difficult time these days so you
+    USICOINS are a non profit exchange coin. We understand that students are having a difficult time this days so you
     don't have to use real money. But if you want, you can buy eth and use it in other apps in the ethereum network.
     <p> </p>
-    <p> <b>Is this app already finished? </b> </p>
-    Well, we are in demo right now, looking for feedback. 
+    <p> <b>Is this app already finish? </b> </p>
+    Well, we are in demo right now. First we want to obtain peoples feedback.
     <p> </p>
     <p> <b>Who made this app? </b> </p>
-    By students, for students.
+    Is done by students, to students, for students.
 </div>
+
+    <script>
+        document.getElementById("dropdownMenuButton").onclick = function() {myFunction()};
+
+        function myFunction() {
+        var e = document.getElementById("dropdownMenuButton").value;
+        console.log(e);
+        //var strUser =e.options[e.target.selectedIndex].text;
+        //e.innerHTML = strUser;
+    }
+    </script>
 
     <script>
         abi = [
@@ -788,6 +733,37 @@
                 });
         }
 
+        function update_rooms() {
+            Coursetro.get_count_room.call( {from: address},
+                    function (error, result) {
+                        if (!error) {
+                        for (j = 0; j < result['c'][0]; j++) {
+
+                            result = Coursetro.get_name_room.call(j, {from: address})
+                                const div = document.createElement('tr');
+                                div.id = j.toString();
+                                document.getElementById('ReserveB').appendChild(div);
+                                div.innerHTML = '<td>' + result + '</td > <td id="' + j.toString()+ '_ini"> </td> <td id="' + j.toString()+ '_end"></td> ' +
+                                    '  <td> ' + j.toString() + '</tr> '
+                                document.getElementById('ReserveB').appendChild(div);
+
+                            result = Coursetro.get_openHour_room.call(j, {from: address})
+
+                            hour_open = result['c']['0'];
+                            document.getElementById(j.toString()+ '_ini').innerHTML = result['c']['0'].toString() + ":00";
+
+
+                            result = Coursetro.get_closeHour_room.call(j, {from: address})
+
+                            hour_close = result['c']['0'];
+                            document.getElementById(j.toString()+ '_end').innerHTML = result['c']['0'].toString() + ":00";
+                        }
+                            } else
+                                console.log(error.code)
+
+                });
+        }
+
         function button_register() {
           var name = document.getElementById("fname").value;
           var lastName = document.getElementById("fname2").value;
@@ -802,24 +778,22 @@
           location.reload();
         }
 
-        function send_points_user(){
-
-           var amt = parseInt(document.getElementById('amount').value);
-           var addr = document.getElementById('address_payee').value;
-
-           console.log(amt);
-           console.log(addr);
-
-           Coursetro.sent_points(addr,amt, {from: address, gasLimit: 6721975},
+        function button_reserve() {
+            var index = document.getElementById("rname1").value;
+            var hour = document.getElementById("rname2").value;
+            hour = parseInt(hour);
+            index = parseInt(index);
+            console.log(hour)
+            console.log(index)
+            Coursetro.reservate_room(index, hour, {from: address, gasLimit: 6721975},
                 function (error, result) {
                     if (!error) {
                        console.log(result)
                     } else
                         console.log(error.code)
                 });
-           location.reload();
-
         }
+
 
         // Loading instance
         /*
@@ -835,15 +809,11 @@
 
 
         var CoursetroContract = web3.eth.contract(abi);
-        var Coursetro = CoursetroContract.at("0xD67DEE1eeD17C2bAeaF455B6D1B8E1Cc8A2dc253");
-        const address = web3.eth.accounts[0];
-
-
-
-        console.log(address);
+        var Coursetro = CoursetroContract.at("0x39bfF4Fd5F2d52095888642cba60aB179d86cc2b");
+        const address = web3.eth.accounts[3];
 
         setTimeout(function(){ update_user(web3, address);}, 1000);
-
+        update_rooms();
 
 
 

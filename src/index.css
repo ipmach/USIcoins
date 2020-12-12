@@ -17,9 +17,9 @@
 }
 
 
-#Form{
+.FormClass{
   margin: auto;
-  width: 60%;
+  width: 30%;
   border: 3px solid #888f91;
   padding: 10px;
 }
