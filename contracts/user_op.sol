@@ -6,6 +6,8 @@ import "./classrooms.sol";
 
 contract Users_op is Users_balance, Rooms_Use{
 
+    function() payable external{}
+
     function sent_points(address _user,
                          int256 amount) public returns (bool){
         reset_user(); //Check if we have to reset user

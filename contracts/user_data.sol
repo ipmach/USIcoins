@@ -29,9 +29,9 @@ contract Users_balance {
     function addPerson(string memory _firstName, string memory _lastName,
                        string memory _study) public  returns (bool){
         // Regirst in the app, you only can do it once
-        if(balances[tx.origin].isValue){
-            return false;
-        }
+        //if(balances[tx.origin].isValue){
+        //    return false;
+        //}
         balances[tx.origin] = Person(_firstName, _lastName,
                                       reset_points, _study, true, now + reset_period);
         peopleCount ++;
