@@ -95,9 +95,94 @@
 </div>
 <div id="ReserveRoom" class="container-fluid">
 <h2 class ="sh2">Reserve Room</h2>
+    <table id = "Reserve" width="100%">
+        <thead>
+            <tr>
+                <th>Room</th>
+                <th>Times</th>
+                <th>Availability & Price</th>
+            </tr>
+
+        </thead>
+        <tbody>
+        <tr>
+            <td>Library</td>
+            <td><div class="library-dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Pick Time
+                    </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item">09:00</a>
+                    <a class="dropdown-item">10:00</a>
+                    <a class="dropdown-item">11:00</a>
+                    <a class="dropdown-item">12:00</a>
+                    <a class="dropdown-item">13:00</a>
+                    <a class="dropdown-item">14:00</a>
+                    <a class="dropdown-item">15:00</a>
+                    <a class="dropdown-item">16:00</a>
+                    <a class="dropdown-item">17:00</a>
+                    <a class="dropdown-item">18:00</a>
+                    <a class="dropdown-item">19:00</a>
+                    <a class="dropdown-item">20:00</a>
+
+                </div>
+            </div></td>
+            <td><button class="check_library" type="button" style="height:30px;width:110px">Check
+                <span class="caret"></span></button></td>
+        </tr>
+        <tr>
+            <td>Main Building (Room 154)</td>
+            <td><div class="main-dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="main_building_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Pick Time
+                    </button>
+                <div class="dropdown-menu" aria-labelledby="main_building_button">
+                    <a class="dropdown-item">09:00</a>
+                    <a class="dropdown-item">10:00</a>
+                    <a class="dropdown-item">11:00</a>
+                    <a class="dropdown-item">12:00</a>
+                    <a class="dropdown-item">13:00</a>
+                    <a class="dropdown-item">14:00</a>
+                    <a class="dropdown-item">15:00</a>
+                    <a class="dropdown-item">16:00</a>
+                    <a class="dropdown-item">17:00</a>
+                    <a class="dropdown-item">18:00</a>
+                </div>
+            </div></td>
+            <td><button class="check_main" type="button" style="height:30px;width:110px">Check
+                <span class="caret"></span></button></td>
+        </tr>
+        <tr>
+            <td>Open Area</td>
+            <td><div class="open-dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="open_area_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Pick Time
+                    </button>
+                <div class="dropdown-menu" aria-labelledby="open_area_button">
+                    <a class="dropdown-item">09:00</a>
+                    <a class="dropdown-item">10:00</a>
+                    <a class="dropdown-item">11:00</a>
+                    <a class="dropdown-item">12:00</a>
+                    <a class="dropdown-item">13:00</a>
+                    <a class="dropdown-item">14:00</a>
+                    <a class="dropdown-item">15:00</a>
+                    <a class="dropdown-item">16:00</a>
+                    <a class="dropdown-item">17:00</a>
+                    <a class="dropdown-item">18:00</a>
+                </div>
+            </div></td>
+            <td><button class="check_library" type="button" style="height:30px;width:110px">Check
+                <span class="caret"></span></button></td>
+        </tr>
+        </tbody>
+
+    </table>
 </div>
 <div id="USIpoints" class="container-fluid">
 <h2 class ="sh2">USI points</h2>
+    <label for="fname">Payee Address:</label>
+    <input type="text" id="address" name="fname">
+    <input type="submit" value="Send">
 </div>
 <div id="About" class="container-fluid">
     <h2 class ="sh2">ABOUT</h2>
@@ -128,6 +213,16 @@
     Is done by students, to students, for students.
 </div>
 
+    <script>
+        document.getElementById("dropdownMenuButton").onclick = function() {myFunction()};
+
+        function myFunction() {
+        var e = document.getElementById("dropdownMenuButton").value;
+        console.log(e);
+        //var strUser =e.options[e.target.selectedIndex].text;
+        //e.innerHTML = strUser;
+    }
+    </script>
 
     <script>
         abi = [
@@ -720,7 +815,7 @@
 
 
         var CoursetroContract = web3.eth.contract(abi);
-        var Coursetro = CoursetroContract.at("0xD5537b0acaDe1912888eb7Fb1028555C4d2d7024");
+        var Coursetro = CoursetroContract.at("0x3De193cdCB10e006A786Ae134FDFD373209Dc730");
         const address = web3.eth.accounts[0];
 
         console.log(address);
