@@ -818,6 +818,7 @@ Create a reservation selecion a room index and an hour:
                     } else
                         console.log(error.code)
                 });
+                location.reload();
         }
 
 
@@ -836,7 +837,7 @@ Create a reservation selecion a room index and an hour:
 
 
         var CoursetroContract = web3.eth.contract(abi);
-        var Coursetro = CoursetroContract.at("0x39bfF4Fd5F2d52095888642cba60aB179d86cc2b");
+        var Coursetro = CoursetroContract.at("0x0d253f9689DA290B66CE5AE7F5911540B642ADfF");
         const address = web3.eth.accounts[0];
 
 
