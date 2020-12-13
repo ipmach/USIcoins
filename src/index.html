@@ -41,7 +41,7 @@
         <a class="nav-link" href="#ReserveRoom">Reserve room</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#USIpoints">Give usi points</a>
+        <a class="nav-link" href="#USICoins">Give USICOINS</a>
       </li>
         <li class="nav-item">
         <a class="nav-link" href="#About">About</a>
@@ -83,19 +83,21 @@
   </table>
     <div class="FormClass" id="Form">
         <p> <b> Create you user:</b> </p>
-        <label for="fname">Name:     </label>
+        <label for="fname">Name:     </label> <br>
         <input type="text" id="fname" name="fname"><br>
-        <label for="fname2">Last name:</label>
+        <label for="fname2">Last name:</label> <br>
         <input type="text" id="fname2" name="fname2"><br>
-        <label for="fname3">Studies:  </label>
+        <label for="fname3">Studies:  </label><br>
         <input type="text" id="fname3" name="fname3"><br>
+        <p></p>
         <button type="button" class="btn btn-secondary" onclick=button_register()>Register</button>
     </div>
     <p> </p>
 </div>
 <div id="ReserveRoom" class="container-fluid">
 <h2 class ="sh2">Reserve Room</h2>
-    <table id = "Reserve" width="100%">
+Create a reservation selecion a room index and an hour:
+    <table id = "Reserve" width="100%" class="table">
         <thead>
             <tr>
                 <th>Room</th>
@@ -111,20 +113,29 @@
 
     </table>
     <div class="FormClass" id="Form_reserve">
-        <label for="rname1">Index room:  </label>
+        <p> <b> Make reservation:</b> </p>
+        <label for="rname1">Index room:  </label> <br>
         <input type="text" id="rname1" name="fname2"><br>
-        <label for="rname2">Hour:  </label>
+        <label for="rname2">Hour:  </label><br>
         <input type="text" id="rname2" name="fname3"><br>
+        <p></p>
         <button type="button" class="btn btn-secondary" onclick=button_reserve()>Reserve</button>
     </div>
+    <p> </p>
 </div>
-<div id="USIpoints" class="container-fluid">
-<h2 class ="sh2">USI points</h2>
-    <label for="fname">Payee Address:</label>
-    <input type="text" id="address_payee" name="fname">
-    <label for="fname">Amount:</label>
-    <input type="text" id="amount" name="fname">
-    <button id="send_points" type="button" onclick="send_points_user()">Send</button>
+<div id="USICoins" class="container-fluid">
+<h2 class ="sh2">Send USICOINS </h2>
+    You can send your points to your friends from here:
+    <div class="FormClass" id="Form_send">
+        <p> <b> Send USICOINS:</b> </p>
+        <label for="fname">Payee Address:</label> <br>
+        <input type="text" id="address_payee" name="fname"> <br>
+        <label for="fname">Amount:</label> <br>
+        <input type="text" id="amount" name="fname"> <br>
+        <p></p>
+        <button id="send_points" type="button"  class="btn btn-secondary" onclick="send_points_user()">Send</button>
+    </div>
+    <p></p>
 </div>
 <div id="About" class="container-fluid">
     <h2 class ="sh2">ABOUT</h2>
@@ -811,6 +822,7 @@
 
 
         // Loading instance
+
         /*
         let web3 = new Web3(window.ethereum);
         if (typeof web3 !== 'undefined') {
@@ -819,7 +831,7 @@
             console.log('No web3? You should consider trying MetaMask!');
              web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
         }
-         */
+        */
         let web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
 
 
@@ -838,8 +850,8 @@
 
     </script>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
-  <p>Footer</p>
+<div id ="Font" class="jumbotron text-center">
+  <p> <b> Thanks for using our app!!!</b></p>
 </div>
 
 </body>
