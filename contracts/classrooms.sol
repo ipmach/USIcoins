@@ -143,9 +143,8 @@ contract Rooms_Use{
 
     function set_price(uint index, uint hour) internal returns(bool){
 
-        int256 valid_rooms = int256(room_list.length);
-        valid_rooms -= 1;
         int256 cost = 0;
+        int256 count = 0;
         int256 avg;
 
         room storage chosen_room = room_list[index];
@@ -156,12 +155,12 @@ contract Rooms_Use{
                 }
                 if(hour < room_list[i].open_hour || hour > room_list[i].close_hour){
 
-                    valid_rooms -= 1;
                     continue;
                 }
                 else{
                     room storage r = room_list[i];
                     cost += r.schedule[hour - r.open_hour];
+                    count ++;
                 }
             }
         }
@@ -170,8 +169,13 @@ contract Rooms_Use{
             return false;
         }
 
-        avg = cost/valid_rooms;
-        chosen_room.extra_price = chosen_room.schedule[hour - chosen_room.open_hour - 1] + 1 - avg;
+        if(count!=0){
+            avg = cost/count;
+        }
+        else{
+            avg = 0;
+        }
+        chosen_room.extra_price = chosen_room.schedule[hour - chosen_room.open_hour] +  avg;
 
         return true;
 
