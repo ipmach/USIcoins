@@ -24,7 +24,10 @@
   padding: 10px;
 }
 
-
+#id{
+    margin-bottom:0;
+    background-color: #eeeeeeff;
+}
 
 #ini {
   background-color: #eeeeeeff;
