@@ -136,7 +136,7 @@ contract Rooms_Use{
     }
 
     function get_count_room() public returns(uint){
-        // Number of classes
+        // Number of classes.
         reset_rooms(); //Resert rooms schedules
         return count_rooms;
     }
