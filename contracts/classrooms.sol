@@ -159,7 +159,7 @@ contract Rooms_Use{
                 }
                 else{
                     room storage r = room_list[i];
-                    cost += r.schedule[hour - r.open_hour];
+                    cost += r.number_people - r.schedule[hour - r.open_hour];
                     count ++;
                 }
             }
@@ -175,7 +175,7 @@ contract Rooms_Use{
         else{
             avg = 0;
         }
-        chosen_room.extra_price = chosen_room.schedule[hour - chosen_room.open_hour] +  avg;
+        chosen_room.extra_price = (avg - chosen_room.number_people - chosen_room.schedule[hour - chosen_room.open_hour])/chosen_room.number_people;
 
         return true;
 

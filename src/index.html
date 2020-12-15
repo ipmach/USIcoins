@@ -52,6 +52,11 @@
     </ul>
   </div>
 </nav>
+<div class="FormClass" id="enter_user">
+    <label for="fname">Enter name for user data:</label> <br>
+    <input type="text" id="user_name" name="fname">
+    <button type="button" class="btn btn-secondary" onclick="get_user()">Submit</button>
+</div>
 <div id="Profile" class="container-fluid">
 <h2 class ="sh2">Profile</h2>
     <p>Here you can see your use data: </p>
@@ -171,6 +176,7 @@ Create a reservation selecion a room index and an hour:
 </div>
 
     <script>
+
         abi = [
     {
       "payable": true,
@@ -737,8 +743,9 @@ Create a reservation selecion a room index and an hour:
                     } else
                         console.log(error.code)
                 });
-        }
 
+
+        }
         function update_rooms() {
             Coursetro.get_count_room.call( {from: address},
                     function (error, result) {
@@ -794,10 +801,12 @@ Create a reservation selecion a room index and an hour:
 
            Coursetro.sent_points(addr,amt, {from: address, gasLimit: 6721975},
                 function (error, result) {
-                    if (!error) {
-                       console.log(result)
-                    } else
-                        console.log(error.code)
+                    try {
+                       console.log(result);
+                    } catch(error){
+                            alert('error');
+                        }
+
                 });
            location.reload();
 
@@ -821,6 +830,15 @@ Create a reservation selecion a room index and an hour:
                 location.reload();
         }
 
+        function get_user() {
+
+            user = document.getElementById("user_name");
+            addresses = {'Rwiddhi':web3.eth.accounts[0], 'Andre':web3.eth.accounts[1]};
+            var name = user.value;
+            address = addresses[name];
+            setTimeout(function(){ update_user(web3, address);}, 1000);
+            return true;
+        }
 
         // Loading instance
 
@@ -833,19 +851,23 @@ Create a reservation selecion a room index and an hour:
              web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
         }
         */
+
+
         let web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+        address = web3.eth.accounts[1];
+        addresses = {'Rwiddhi':web3.eth.accounts[0], 'Andre':web3.eth.accounts[1]};
 
 
         var CoursetroContract = web3.eth.contract(abi);
-        var Coursetro = CoursetroContract.at("0x0d253f9689DA290B66CE5AE7F5911540B642ADfF");
-        const address = web3.eth.accounts[0];
-
+        var Coursetro = CoursetroContract.at("0xaa224d4D26033983002f8615c3B9e28e663064d5");
 
 
         console.log(address);
 
         setTimeout(function(){ update_user(web3, address);}, 1000);
         update_rooms();
+
+
 
 
 
